@@ -64,7 +64,7 @@ VEHICLE-CRUD/
 │   │   ├── favicon.ico
 │   │   └── assets/
 │   │       └── background/
-│   │           └── car-themed-background.png  (Imagem de fundo)
+│   │           └── background.webp  (Imagem de fundo)
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── vehicle-list/
