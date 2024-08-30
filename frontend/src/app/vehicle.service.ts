@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export interface Vehicle {
   id: number;
@@ -21,18 +22,40 @@ export class VehicleService {
   constructor(private http: HttpClient) { }
 
   getVehicles(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this.apiUrl);
+    return this.http.get<Vehicle[]>(this.apiUrl).pipe(
+      catchError(this.handleError) // Tratamento de erro
+    );
   }
 
   addVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    return this.http.post<Vehicle>(this.apiUrl, vehicle);
+    return this.http.post<Vehicle>(this.apiUrl, vehicle).pipe(
+      catchError(this.handleError) // Tratamento de erro
+    );
   }
 
   updateVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    return this.http.put<Vehicle>(`${this.apiUrl}/${vehicle.id}`, vehicle);
+    return this.http.put<Vehicle>(`${this.apiUrl}/${vehicle.id}`, vehicle).pipe(
+      catchError(this.handleError) // Tratamento de erro
+    );
   }
 
   deleteVehicle(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError(this.handleError) // Tratamento de erro
+    );
+  }
+
+  // Método para tratar erros HTTP
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'Erro desconhecido!';
+    if (error.error instanceof ErrorEvent) {
+      // Erro no lado do cliente ou erro de rede
+      errorMessage = `Erro: ${error.error.message}`;
+    } else {
+      // Erro no lado do servidor
+      errorMessage = `Código do erro: ${error.status}\nMensagem: ${error.message}`;
+    }
+    console.error(errorMessage); // Log do erro para depuração
+    return throwError(errorMessage); // Retorna um Observable com uma mensagem de erro
   }
 }

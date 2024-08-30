@@ -1,30 +1,78 @@
-<h2>Lista de Veículos</h2>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Placa</th>
-      <th>Chassi</th>
-      <th>Renavam</th>
-      <th>Modelo</th>
-      <th>Marca</th>
-      <th>Ano</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let vehicle of vehicles">
-      <td>{{ vehicle.id }}</td>
-      <td>{{ vehicle.placa }}</td>
-      <td>{{ vehicle.chassi }}</td>
-      <td>{{ vehicle.renavam }}</td>
-      <td>{{ vehicle.modelo }}</td>
-      <td>{{ vehicle.marca }}</td>
-      <td>{{ vehicle.ano }}</td>
-      <td>
-        <button (click)="updateVehicle(vehicle)">Atualizar</button>
-        <button (click)="deleteVehicle(vehicle.id)">Deletar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h1>Bem-vindo ao Gerenciador de Veículos</h1>
+
+  <!-- Exibir mensagem de erro, se houver -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Campo de pesquisa -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterVehicles()" placeholder="Buscar por Placa ou Chassi" />
+  </div>
+
+  <h2>Lista de Veículos</h2>
+  <div class="table-container">
+    <!-- Mensagem se nenhum veículo for encontrado -->
+    <div *ngIf="filteredVehicles.length === 0" class="no-results-message">
+      Nenhuma placa encontrada
+    </div>
+
+    <!-- Tabela de veículos -->
+    <table *ngIf="filteredVehicles.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Placa</th>
+          <th>Chassi</th>
+          <th>Renavam</th>
+          <th>Modelo</th>
+          <th>Marca</th>
+          <th>Ano</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of filteredVehicles">
+          <td>{{ vehicle.id }}</td>
+          <td>{{ vehicle.placa }}</td>
+          <td>{{ vehicle.chassi }}</td>
+          <td>{{ vehicle.renavam }}</td>
+          <td>{{ vehicle.modelo }}</td>
+          <td>{{ vehicle.marca }}</td>
+          <td>{{ vehicle.ano }}</td>
+          <td>
+            <button (click)="editVehicle(vehicle)">Editar</button>
+            <button (click)="deleteVehicle(vehicle.id)">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>{{ isEditing ? 'Editar Veículo' : 'Adicionar Novo Veículo' }}</h2>
+  <form (ngSubmit)="addOrUpdateVehicle()">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newVehicle.placa" name="placa" placeholder="Placa" required />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newVehicle.chassi" name="chassi" placeholder="Chassi" required />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newVehicle.renavam" name="renavam" placeholder="Renavam" required />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newVehicle.modelo" name="modelo" placeholder="Modelo" required />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newVehicle.marca" name="marca" placeholder="Marca" required />
+    </div>
+    <div class="form-group">
+      <input type="number" [(ngModel)]="newVehicle.ano" name="ano" placeholder="Ano" required />
+    </div>
+    <div class="form-group">
+      <button type="submit">{{ isEditing ? 'Atualizar Veículo' : 'Adicionar Veículo' }}</button>
+      <button type="button" (click)="resetForm()" *ngIf="isEditing">Cancelar</button>
+    </div>
+  </form>
+</div>
