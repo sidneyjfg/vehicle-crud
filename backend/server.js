@@ -36,11 +36,19 @@ app.get('/api/vehicles', (req, res) => {
 // CREATE
 app.post('/api/vehicles', (req, res) => {
     const vehicle = req.body;
-    vehicle.id = vehicles.length + 1;
+
+    // Encontrar o maior ID existente
+    const maxId = vehicles.reduce((max, v) => (v.id > max ? v.id : max), 0);
+
+    // Atribuir o próximo ID
+    vehicle.id = maxId + 1;
+
     vehicles.push(vehicle);
     saveVehicles();
+
     res.status(201).json(vehicle);
 });
+
 
 // UPDATE 
 app.put('/api/vehicles/:id', (req, res) => {

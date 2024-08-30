@@ -17,19 +17,13 @@ body {
 }
 
 /* Contêiner Principal */
-/* Contêiner Principal */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px auto; /* Espaçamento automático para centro vertical e horizontal */
-    overflow: auto; /* Rolagem automática para conteúdo que excede o limite */
 }
 
 /* Estilo para Títulos */
@@ -170,8 +164,6 @@ button[type="submit"]:hover {
 }
 
 .search-container {
-    display: flex;
-    align-items: center;
     margin-bottom: 20px;
 }
 
@@ -199,33 +191,3 @@ button[type="submit"]:hover {
 .button-link:hover {
     background-color: #005999;
 }
-
-.filter-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.filter-button i {
-    font-size: 16px;
-}
-
-.year-filter {
-    margin-top: 10px;
-}
-
-.table-container {
-    margin-top: 20px;
-}
-
-.no-results-message {
-    color: red;
-}
-.action-buttons {
-    display: flex;
-    gap: 5px; /* Espaço entre os botões */
-  }

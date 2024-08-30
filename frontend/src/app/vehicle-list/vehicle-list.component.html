@@ -1,24 +1,22 @@
 <div class="container">
-  <h1>Bem-vindo ao Gerenciador de Veículos</h1>
+  <h1>Lista de Veículos</h1>
 
-  <!-- Exibir mensagem de erro, se houver -->
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-  <!-- Campo de pesquisa -->
   <div class="search-container">
     <input type="text" [(ngModel)]="searchTerm" (input)="filterVehicles()" placeholder="Buscar por Placa ou Chassi" />
+    <button (click)="toggleYearFilter()" class="filter-button">Filtro</button>
   </div>
 
-  <h2>Lista de Veículos</h2>
-  <div class="table-container">
-    <!-- Mensagem se nenhum veículo for encontrado -->
-    <div *ngIf="filteredVehicles.length === 0" class="no-results-message">
-      Nenhuma placa encontrada
-    </div>
+  <div *ngIf="showYearFilter" class="year-filter">
+    <label for="yearSelect">Filtrar por Ano:</label>
+    <select id="yearSelect" [(ngModel)]="selectedYear" (change)="filterVehicles()">
+      <option value="">Todos os Anos</option>
+      <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+    </select>
+  </div>
 
-    <!-- Tabela de veículos -->
+  <div class="table-container">
     <table *ngIf="filteredVehicles.length > 0">
       <thead>
         <tr>
@@ -42,37 +40,34 @@
           <td>{{ vehicle.marca }}</td>
           <td>{{ vehicle.ano }}</td>
           <td>
-            <button (click)="editVehicle(vehicle)">Editar</button>
-            <button (click)="deleteVehicle(vehicle.id)">Deletar</button>
+            <div class="action-buttons">
+              <button (click)="editVehicle(vehicle)">Editar</button>
+              <button (click)="deleteVehicle(vehicle.id)">Excluir</button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+    <div *ngIf="filteredVehicles.length === 0" class="no-results-message">Nenhuma placa encontrada</div>
   </div>
 
-  <h2>{{ isEditing ? 'Editar Veículo' : 'Adicionar Novo Veículo' }}</h2>
-  <form (ngSubmit)="addOrUpdateVehicle()">
-    <div class="form-group">
-      <input type="text" [(ngModel)]="newVehicle.placa" name="placa" placeholder="Placa" required />
-    </div>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="newVehicle.chassi" name="chassi" placeholder="Chassi" required />
-    </div>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="newVehicle.renavam" name="renavam" placeholder="Renavam" required />
-    </div>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="newVehicle.modelo" name="modelo" placeholder="Modelo" required />
-    </div>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="newVehicle.marca" name="marca" placeholder="Marca" required />
-    </div>
-    <div class="form-group">
-      <input type="number" [(ngModel)]="newVehicle.ano" name="ano" placeholder="Ano" required />
-    </div>
-    <div class="form-group">
-      <button type="submit">{{ isEditing ? 'Atualizar Veículo' : 'Adicionar Veículo' }}</button>
-      <button type="button" (click)="resetForm()" *ngIf="isEditing">Cancelar</button>
-    </div>
-  </form>
+  <!-- Botão de Gerenciamento de Veículos -->
+  <div class="manage-button-container" style="margin-top: 20px;">
+    <button [routerLink]="['/manage-vehicle']">Adicionar Veículo</button>
+  </div>
+
+  <!-- Formulário de Edição -->
+  <div *ngIf="editingVehicle" class="edit-form">
+    <h2>Editando Veículo</h2>
+    <form>
+      <label>Placa: <input type="text" [(ngModel)]="editingVehicle.placa" name="placa" /></label><br />
+      <label>Chassi: <input type="text" [(ngModel)]="editingVehicle.chassi" name="chassi" /></label><br />
+      <label>Renavam: <input type="text" [(ngModel)]="editingVehicle.renavam" name="renavam" /></label><br />
+      <label>Modelo: <input type="text" [(ngModel)]="editingVehicle.modelo" name="modelo" /></label><br />
+      <label>Marca: <input type="text" [(ngModel)]="editingVehicle.marca" name="marca" /></label><br />
+      <label>Ano: <input type="number" [(ngModel)]="editingVehicle.ano" name="ano" /></label><br />
+      <button type="button" (click)="updateVehicle()">Salvar</button>
+      <button type="button" (click)="cancelEdit()">Cancelar</button>
+    </form>
+  </div>
 </div>

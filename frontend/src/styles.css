@@ -1,8 +1,7 @@
 body {
-    background-image: url('../public/assets/background.webp');
+    background-color: rgba(12, 91, 170, 0.747) ;
     background-size: cover; /* Ajusta a imagem para cobrir o fundo inteiro */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Não repete a imagem */
     min-height: 100vh; /* Garante que o corpo tenha pelo menos 100% da altura da viewport */
-    margin: 0; /* Remove margens padrão */
 }

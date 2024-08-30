@@ -1,10 +1,11 @@
 {
   "name": "vehicle-crud",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend para o projeto Vehicle CRUD utilizando Express e Mocha para testes.",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha"
   },
   "dependencies": {
@@ -12,10 +13,13 @@
     "chai-http": "^4.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
     "mocha": "^10.0.0"
   },
-  "keywords": [],
-  "author": "",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.13.0"
+  },
+  "keywords": ["backend", "nodejs", "express", "mocha", "chai"],
+  "author": "Seu Nome",
   "license": "ISC"
 }
