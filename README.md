@@ -25,9 +25,15 @@ Este projeto é um sistema de Gerenciamento de Veículos desenvolvido com foco e
 
 ## Funcionalidades
 Listar Veículos: Exibe uma lista de veículos com detalhes como ID, placa, chassi, renavam, modelo, marca e ano.
+
+Busca de Veículos: Permite fazer a busca pela placa e chassi do veículo.
+
 Adicionar Veículo: Permite a adição de um novo veículo à lista, fornecendo os detalhes necessários.
+
 Atualizar Veículo: Permite a edição dos detalhes de um veículo existente na lista.
+
 Deletar Veículo: Remove um veículo da lista de veículos.
+
 Integração com Backend: Utiliza uma API RESTful construída em Node.js para comunicação com o servidor e persistência dos dados dos veículos.
 
 ### Tecnologias Utilizadas
