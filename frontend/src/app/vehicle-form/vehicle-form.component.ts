@@ -21,7 +21,7 @@ export class VehicleFormComponent {
 
   addVehicle(): void {
   
-    // Primeiro, consulte a API para obter todos os veículos existentes
+    // Primeiro, consultar a API para obter todos os veículos existentes
     this.vehicleService.getVehicles().subscribe(
       vehicles => {
         this.vehicles = vehicles;

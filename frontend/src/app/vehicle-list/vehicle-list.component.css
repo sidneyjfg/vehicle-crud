@@ -1,4 +1,4 @@
-/* Resetando margens e padding padrão para todos os elementos */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,16 +8,14 @@
 
 body {
     color: #333;
-    /* Cor de texto escura para contraste */
+
     font-family: 'Arial', sans-serif;
-    /* Fonte padrão */
+
     line-height: 1.6;
-    /* Altura da linha para melhorar a legibilidade */
+
 
 }
 
-/* Contêiner Principal */
-/* Contêiner Principal */
 .container {
     display: flex;
     flex-direction: column;
@@ -28,139 +26,135 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px auto; /* Espaçamento automático para centro vertical e horizontal */
-    overflow: auto; /* Rolagem automática para conteúdo que excede o limite */
+    margin: 20px auto;
+    overflow: auto;
 }
 
-/* Estilo para Títulos */
 h1,
 h2 {
     color: #333;
-    /* Cor de texto */
+
     text-align: center;
-    /* Centralização do texto */
+
     margin-bottom: 20px;
-    /* Espaçamento inferior */
+
 }
 
 h1 {
     font-size: 2rem;
-    /* Tamanho da fonte para h1 */
+
 }
 
 h2 {
     font-size: 1.5rem;
-    /* Tamanho da fonte para h2 */
+
     margin-top: 20px;
-    /* Espaçamento superior */
+
 }
 
-/* Estilo para Tabelas */
 table {
     width: 100%;
     border-collapse: collapse;
-    /* Remover espaçamento entre células */
+
     margin: 20px 0;
-    /* Espaçamento vertical */
+
 }
 
 th,
 td {
     padding: 10px;
-    /* Espaçamento interno para células */
+
     text-align: left;
-    /* Alinhamento do texto à esquerda */
+
     border: 1px solid #ddd;
-    /* Borda cinza clara para células */
+
 }
 
 th {
     background-color: #007ACC;
-    /* Cor de fundo para cabeçalho */
+
     color: #fff;
-    /* Cor do texto para cabeçalho */
+
 }
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
-    /* Fundo alternado para linhas */
+
 }
 
 tr:hover {
     background-color: #f1f1f1;
-    /* Fundo ao passar o mouse sobre a linha */
+
 }
 
-/* Estilo para Botões */
 button {
     padding: 10px 15px;
-    /* Espaçamento interno */
+
     margin: 5px;
-    /* Espaçamento externo */
+
     border: none;
-    /* Remover borda padrão */
+
     background-color: #007ACC;
-    /* Cor de fundo azul */
+
     color: #fff;
-    /* Cor do texto branco */
+
     border-radius: 5px;
-    /* Bordas arredondadas */
+
     cursor: pointer;
-    /* Indicador de clique */
+
     transition: background-color 0.3s ease;
-    /* Transição suave para fundo */
+
 }
 
 button:hover {
     background-color: #005999;
-    /* Cor de fundo ao passar o mouse */
+
 }
 
-/* Estilo para Formulários */
 form {
     margin-top: 20px;
-    /* Espaçamento superior */
+
 }
 
 .form-group {
     margin-bottom: 15px;
-    /* Espaçamento inferior entre grupos de formulário */
+
 }
 
 input[type="text"],
 input[type="number"] {
     width: 100%;
-    /* Largura total para entradas de texto */
+
     padding: 10px;
-    /* Espaçamento interno */
+
     border: 1px solid #ddd;
-    /* Borda cinza clara */
+
     border-radius: 5px;
-    /* Bordas arredondadas */
+
     margin-top: 5px;
-    /* Espaçamento superior */
+
 }
 
 button[type="submit"] {
     background-color: #28a745;
-    /* Verde para botões de envio */
+
     color: #fff;
-    /* Cor do texto branco */
+
     border: none;
-    /* Remover borda padrão */
+
     padding: 10px 15px;
-    /* Espaçamento interno */
+
     cursor: pointer;
-    /* Indicador de clique */
+
     border-radius: 5px;
-    /* Bordas arredondadas */
+
     transition: background-color 0.3s ease;
-    /* Transição suave para fundo */
+
 }
 
 button[type="submit"]:hover {
     background-color: #218838;
-    /* Cor de fundo ao passar o mouse */
+
 }
 
 .error-message {
@@ -182,7 +176,6 @@ button[type="submit"]:hover {
     border-radius: 5px;
 }
 
-/* Estilo para o link que se parece com um botão */
 .button-link {
     display: inline-block;
     padding: 10px 20px;
@@ -227,5 +220,5 @@ button[type="submit"]:hover {
 }
 .action-buttons {
     display: flex;
-    gap: 5px; /* Espaço entre os botões */
+    gap: 5px;
   }
